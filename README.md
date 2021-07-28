@@ -64,6 +64,8 @@ Type: `string[]`
 
 The headers you want to enforce on the request
 
+Throws a `400 - missing ${header}` error upon missing required header
+
 #### skip
 Type: `boolean`
 
