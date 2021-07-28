@@ -1,20 +1,21 @@
 import type { Request, Response, NextFunction } from 'express';
+import createError from 'http-errors';
 
-export default (nodeEnv: string) => (req: Request, res: Response, next: NextFunction) => {
-  if (nodeEnv !== 'production') {
+export const requiredHeaders = ['x-api-client', 'x-api-client-version'];
+
+export default ({ headers = requiredHeaders, skip = false }: { skip: boolean; headers?: string[] }) =>
+  (req: Request, _: Response, next: NextFunction) => {
+    if (skip) {
+      next();
+
+      return;
+    }
+
+    for (const header of headers) {
+      if (!req.headers[header]) {
+        throw createError(400, `Missing ${header}`);
+      }
+    }
+
     next();
-
-    return;
-  }
-  if (!req.headers['x-api-client']) {
-    res.status(400).send('Missing x-api-client');
-
-    return;
-  }
-  if (!req.headers['x-api-client-version']) {
-    res.status(400).send('Missing x-api-client-version');
-
-    return;
-  }
-  next();
-};
+  };
