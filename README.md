@@ -42,7 +42,7 @@ socketServer.use(enforceClientHeaders, {headers});
 
 ## API
 
-### enforceClientHeaders({headers, skip})
+### enforceClientHeaders({headers})
 #### headers
 Type: `string[]`
 
