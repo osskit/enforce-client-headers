@@ -2,7 +2,7 @@
 
 # enforce-client-headers
 
-## Make headers great again
+Enforce headers against http calls to your API
   
 </div>
 
@@ -40,22 +40,6 @@ socketServer.use(enforceClientHeaders, {headers});
 
 ```
 
-### Skip
-
-
-```
-import enforceClientHeaders from '@osskit/enforce-client-headers'
-
-const server = express();
-const socketServer = io();
-
-const skip = nodeEnv !== 'production';
-
-server.use(enforceClientHeaders({skip});
-socketServer.use(enforceClientHeaders, {skip});
-
-```
-
 ## API
 
 ### enforceClientHeaders({headers, skip})
@@ -65,11 +49,6 @@ Type: `string[]`
 The headers you want to enforce on the request
 
 Throws a `400 - missing ${header}` error upon missing required header
-
-#### skip
-Type: `boolean`
-
-Skip the headers enforcing when needed
 
 ### requiredHeaders
 
