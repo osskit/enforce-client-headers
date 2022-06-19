@@ -1,10 +1,5 @@
-<div align="center">
-
 # enforce-client-headers
-
 Enforce headers against http calls to your API
-  
-</div>
 
 ## Install
 ```
@@ -15,20 +10,19 @@ yarn add @osskit/enforce-client-headers
 
 ### Simple
 ```
-import enforceClientHeaders from '@osskit/enforce-client-headers'
+import { enforceClientHeaders } from '@osskit/enforce-client-headers'
 
 const server = express();
 const socketServer = io();
 
 server.use(enforceClientHeaders());
 socketServer.use(enforceClientHeaders());
-
 ```
 
 ### Extra headers
 
 ```
-import enforceClientHeaders, { requiredHeaders } from '@osskit/enforce-client-headers'
+import { enforceClientHeaders, requiredHeaders } from '@osskit/enforce-client-headers'
 
 const server = express();
 const socketServer = io();
@@ -37,7 +31,6 @@ const headers = [...requiredHeaders, 'my-extra-header'];
 
 server.use(enforceClientHeaders({headers});
 socketServer.use(enforceClientHeaders, {headers});
-
 ```
 
 ## API
@@ -52,4 +45,4 @@ Throws a `400 - missing ${header}` error upon missing required header
 
 ### requiredHeaders
 
-Type: `string[]` by default `['x-api-client', 'x-api-client-version']`
+Type: `string[]`, by default `['x-api-client', 'x-api-client-version']`
