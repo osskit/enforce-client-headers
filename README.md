@@ -23,7 +23,7 @@ server.use(enforceClientHeaders());
 socketServer.use(enforceClientHeaders());
 ```
 
-### Extra headers
+### add more headers
 
 ```
 import { enforceClientHeaders, defaultHeaders } from '@osskit/enforce-client-headers'
