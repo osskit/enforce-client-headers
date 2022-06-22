@@ -1,5 +1,5 @@
 # enforce-client-headers
-Enforce headers against http calls to your API
+Enforce headers against http calls to your Express API
 
 ## Install
 ```
@@ -22,15 +22,15 @@ socketServer.use(enforceClientHeaders());
 ### Extra headers
 
 ```
-import { enforceClientHeaders, requiredHeaders } from '@osskit/enforce-client-headers'
+import { enforceClientHeaders, defaultHeaders } from '@osskit/enforce-client-headers'
 
 const server = express();
 const socketServer = io();
 
-const headers = [...requiredHeaders, 'my-extra-header'];
+const headers = [...defaultHeaders, 'my-extra-header'];
 
-server.use(enforceClientHeaders({headers});
-socketServer.use(enforceClientHeaders, {headers});
+server.use(enforceClientHeaders({ headers });
+socketServer.use(enforceClientHeaders, { headers });
 ```
 
 ## API
@@ -43,6 +43,6 @@ The headers you want to enforce on the request
 
 Throws a `400 - missing ${header}` error upon missing required header
 
-### requiredHeaders
+### defaultHeaders
 
 Type: `string[]`, by default `['x-api-client', 'x-api-client-version']`
